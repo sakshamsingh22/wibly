@@ -172,7 +172,7 @@ app.delete('/api/submissions/:id', requireAdmin, (req, res) => {
 // Serve static build in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(join(__dirname, 'dist')));
-  app.get('*', (req, res) => res.sendFile(join(__dirname, 'dist', 'index.html')));
+  app.use((req, res) => res.sendFile(join(__dirname, 'dist', 'index.html')));
 }
 
 app.listen(PORT, () => {
