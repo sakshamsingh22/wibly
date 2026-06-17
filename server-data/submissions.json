@@ -1,0 +1,42 @@
+[
+  {
+    "id": "mqhljygv8zuf",
+    "name": "Suyash SIngh",
+    "email": "suyash@gmail.com",
+    "business": "Sugar Factory",
+    "need": "Business Website",
+    "message": "i want to make a website for my business",
+    "timestamp": "2026-06-17T04:54:38.911Z",
+    "read": true
+  },
+  {
+    "id": "mqhjo7vbbff3",
+    "name": "Test User",
+    "email": "test@example.com",
+    "business": "Test Business",
+    "need": "Landing Page",
+    "message": "This is a test submission to verify email notifications are working!",
+    "timestamp": "2026-06-17T04:01:58.487Z",
+    "read": true
+  },
+  {
+    "id": "mqh7ce47n39j",
+    "name": "David Chen",
+    "email": "david@sparkfitness.com",
+    "business": "Spark Fitness Studio",
+    "need": "Business Website",
+    "message": "Hi! I run a fitness studio in Austin, TX and need a professional website with class schedules and a membership signup page. Looking forward to hearing from you!",
+    "timestamp": "2026-06-16T22:16:51.319Z",
+    "read": true
+  },
+  {
+    "id": "mqh6k8q33iql",
+    "name": "John Smith",
+    "email": "john@test.com",
+    "business": "Smith Co",
+    "need": "Business Website",
+    "message": "I need a new website for my plumbing business",
+    "timestamp": "2026-06-16T21:54:57.963Z",
+    "read": true
+  }
+]
