@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3001;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'wibly2025';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '22@SakshamSingh';
 const DATA_DIR = join(__dirname, 'server-data');
 const DATA_FILE = join(DATA_DIR, 'submissions.json');
 
@@ -114,10 +114,22 @@ app.post('/api/contact', (req, res) => {
 });
 
 // POST - Admin login
+// Simple hash for token signing
+function simpleHash(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash).toString(36);
+}
+
+const PASSWORD_SIG = simpleHash(ADMIN_PASSWORD);
+
 app.post('/api/admin/login', (req, res) => {
   const { password } = req.body;
   if (password === ADMIN_PASSWORD) {
-    res.json({ success: true, token: Buffer.from(`wibly:${Date.now()}`).toString('base64') });
+    res.json({ success: true, token: Buffer.from(`wibly:${PASSWORD_SIG}:${Date.now()}`).toString('base64') });
   } else {
     res.status(401).json({ error: 'Invalid password' });
   }
@@ -129,8 +141,8 @@ function requireAdmin(req, res, next) {
   if (!token) return res.status(401).json({ error: 'Unauthorized' });
   try {
     const decoded = Buffer.from(token, 'base64').toString();
-    if (decoded.startsWith('wibly:')) return next();
-  } catch {}
+    if (decoded.startsWith(`wibly:${PASSWORD_SIG}:`)) return next();
+  } catch { }
   res.status(401).json({ error: 'Unauthorized' });
 }
 
